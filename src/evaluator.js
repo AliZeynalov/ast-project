@@ -7,18 +7,24 @@ export class Evaluator {
             var val = expression.value;
             return val;
         } else {
-            if (expression.name == "add") {
-                let param1 = this.evaluate(expression.parameters[0]);
-                let param2 = this.evaluate(expression.parameters[1]);
-                return add(param1, param2);
-            } else if (expression.name == "equals") {
-                let param1 = this.evaluate(expression.parameters[0]);
-                let param2 = this.evaluate(expression.parameters[1]);
-                return equals(param1, param2);
-            } else if (expression.name == "not") {
-                return not(expression.parameters[0]);
+            switch (expression.name) {
+                case "add": {
+                    let param1 = this.evaluate(expression.parameters[0]);
+                    let param2 = this.evaluate(expression.parameters[1]);
+                    return add(param1, param2);
+                }
+                case "equals": {
+                    let param1 = this.evaluate(expression.parameters[0]);
+                    let param2 = this.evaluate(expression.parameters[1]);
+                    return equals(param1, param2);
+                }
+                case "not": {
+                    let param = this.evaluate(expression.parameters[0]);
+                    return not(param);
+                }
+                default:
+                    throw "Unknown function";
             }
         }
-        throw "Unknown function";
     }
 }
