@@ -1,4 +1,4 @@
-import { add, equals, not, fetchGet, contains } from "./functions"
+import { add, equals, not, fetchGet, contains } from "./functions.js"
 
 /**
  * Evaluator class that evaluates expression ASTs
