@@ -11,14 +11,14 @@ describe("Evaluator", () => {
         evaluator = null;
     });
 
-    it("evaluates a literal expression", function() {
-        expect(evaluator.evaluate({ type: "literal", value: "true" })).toBe("true");
-        expect(evaluator.evaluate({ type: "literal", value: 42 })).toBe(42);
-        expect(evaluator.evaluate({ type: "literal", value: false })).toBe(false);
+    it("evaluates a literal expression", async () => {
+        expect(await evaluator.evaluate({ type: "literal", value: "true" })).toBe("true");
+        expect(await evaluator.evaluate({ type: "literal", value: 42 })).toBe(42);
+        expect(await evaluator.evaluate({ type: "literal", value: false })).toBe(false);
     });
 
-    it("evaluates an add function expression", () => {
-        expect(evaluator.evaluate({ 
+    it("evaluates an add function expression", async () => {
+        expect(await evaluator.evaluate({ 
             type: "function", 
             name: "add", 
             parameters: [
@@ -28,8 +28,8 @@ describe("Evaluator", () => {
         })).toBeCloseTo(0.9);
     });
 
-    it("evaluates a nested function expression", () => {
-        expect(evaluator.evaluate({
+    it("evaluates a nested function expression", async () => {
+        expect(await evaluator.evaluate({
             type: "function",
             name: "add",
             parameters: [
@@ -46,8 +46,8 @@ describe("Evaluator", () => {
         })).toBe(6);
     });
 
-    it("evaluates an equals function expression", () => {
-        expect(evaluator.evaluate({
+    it("evaluates an equals function expression", async () => {
+        expect(await evaluator.evaluate({
             type: "function",
             name: "equals",
             parameters: [
@@ -56,7 +56,7 @@ describe("Evaluator", () => {
             ]
         })).toBe(true);
 
-        expect(evaluator.evaluate({
+        expect(await evaluator.evaluate({
             type: "function",
             name: "equals",
             parameters: [
@@ -66,8 +66,8 @@ describe("Evaluator", () => {
         })).toBe(false);
     });
 
-    it("evaluates a not function expression", () => {
-        expect(evaluator.evaluate({
+    it("evaluates a not function expression", async () => {
+        expect(await evaluator.evaluate({
             type: "function",
             name: "not",
             parameters: [
@@ -75,7 +75,7 @@ describe("Evaluator", () => {
             ]
         })).toBe(false);
 
-        expect(evaluator.evaluate({
+        expect(await evaluator.evaluate({
             type: "function",
             name: "not",
             parameters: [
@@ -87,11 +87,23 @@ describe("Evaluator", () => {
         })).toBe(true);
     });
 
-    it("throws an error for an invalid expression", () => {
-        expect(() => evaluator.evaluate({ type: "" })).toThrow();
+    it("throws an error for an invalid expression", async () => {
+        await expect(evaluator.evaluate({ type: "" })).rejects.toThrow();
     });
 
-    it("throws an error for an invalid function expression", () => {
-        expect(() => evaluator.evaluate({ type: "function", name: "toString", parameters: [] })).toThrow("Unknown function");
+    it("throws an error for not function with non-boolean parameter", async () => {
+        await expect(evaluator.evaluate({ 
+            type: "function", 
+            name: "not", 
+            parameters: [{ type: "literal", value: 1 }] 
+        })).rejects.toThrow("not function requires boolean parameter");
+    });
+
+    it("throws an error for an invalid function expression", async () => {
+        await expect(evaluator.evaluate({ 
+            type: "function", 
+            name: "toString", 
+            parameters: [] 
+        })).rejects.toThrow("Unknown function");
     });
 });

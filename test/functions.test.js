@@ -1,4 +1,7 @@
-import { add, equals, not } from '../src/functions';
+import { add, equals, not, contains } from '../src/functions';
+
+// Mock fetch for testing
+global.fetch = jest.fn();
 
 describe('Functions', () => {
   describe('equals', () => {
@@ -48,6 +51,32 @@ describe('Functions', () => {
       expect(() => add(1, '2')).toThrow('add function requires number parameters');
       expect(() => add(null, 2)).toThrow('add function requires number parameters');
       expect(() => add(1, null)).toThrow('add function requires number parameters');
+    });
+  });
+
+  describe('contains', () => {
+    it('returns true when source contains search string', () => {
+      expect(contains('hello world', 'world')).toBe(true);
+      expect(contains('test string', 'test')).toBe(true);
+      expect(contains('abc', '')).toBe(true);
+    });
+
+    it('returns false when source does not contain search string', () => {
+      expect(contains('hello world', 'universe')).toBe(false);
+      expect(contains('test', 'testing')).toBe(false);
+      expect(contains('', 'anything')).toBe(false);
+    });
+
+    it('is case sensitive', () => {
+      expect(contains('Hello World', 'hello')).toBe(false);
+      expect(contains('TESTING', 'test')).toBe(false);
+    });
+
+    it('throws an error for non-string values', () => {
+      expect(() => contains(123, 'test')).toThrow('contains function requires string parameters');
+      expect(() => contains('test', 123)).toThrow('contains function requires string parameters');
+      expect(() => contains(null, 'test')).toThrow('contains function requires string parameters');
+      expect(() => contains('test', null)).toThrow('contains function requires string parameters');
     });
   });
 }); 

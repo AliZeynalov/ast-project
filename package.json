@@ -4,7 +4,8 @@
   "description": "This package executes ASTs generated from mendix expressions",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:real": "jest test/realHttp.test.js"
   },
   "author": "Mendix",
   "license": "UNLICENSED",
