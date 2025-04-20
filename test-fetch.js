@@ -1,4 +1,6 @@
-// Simple script to test fetch outside Jest
+// Simple script to test fetch outside Jest -- will be removed later, once assignment is ready.
+
+import { contains, fetchGet } from "./src/functions.js";
 
 async function testFetch() {
   console.log('Starting fetch test...');
@@ -10,7 +12,7 @@ async function testFetch() {
     const text = await response.text();
     console.log(`Response length: ${text.length} characters`);
     console.log(`Response contains 'Example Domain': ${text.includes('Example Domain')}`);
-    
+    console.log(`Response contains 'google': ${text.includes('google')} `);
     return 'Fetch test completed successfully';
   } catch (error) {
     console.error('Fetch error:', error);

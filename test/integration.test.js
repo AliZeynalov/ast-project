@@ -1,4 +1,5 @@
-import { Evaluator } from '../src/evaluator';
+import { Evaluator } from '../src/evaluator.js';
+import { jest } from '@jest/globals';
 
 // Mock the global fetch function
 global.fetch = jest.fn();

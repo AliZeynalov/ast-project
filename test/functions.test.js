@@ -1,4 +1,5 @@
-import { add, equals, not, contains } from '../src/functions';
+import { add, equals, not, contains } from '../src/functions.js';
+import { jest } from '@jest/globals';
 
 // Mock fetch for testing
 global.fetch = jest.fn();

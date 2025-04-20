@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "This package executes ASTs generated from mendix expressions",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest",
-    "test:real": "jest test/realHttp.test.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.mjs",
+    "test:real": "NODE_OPTIONS=--experimental-vm-modules npx jest test/realHttp.test.js --config=jest.config.mjs",
+    "test:simple": "NODE_OPTIONS=--experimental-vm-modules npx jest test/simpleFetch.test.js --config=jest.simple.config.mjs"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": ["babel-jest", {"configFile": "./babel.config.mjs"}]
+    }
   },
   "author": "Mendix",
   "license": "UNLICENSED",
@@ -14,6 +21,7 @@
     "@babel/preset-env": "^7.26.9",
     "babel-core": "^6.26.3",
     "babel-jest": "^27.5.1",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "node-fetch": "^2.7.0"
   }
 }

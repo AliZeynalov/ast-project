@@ -1,4 +1,4 @@
-import { Evaluator } from "../src/evaluator";
+import { Evaluator } from "../src/evaluator.js";
 
 let evaluator;
 
