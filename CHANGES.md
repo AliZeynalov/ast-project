@@ -40,7 +40,8 @@ This document outlines changes that applied over Expression Evaluator project.
 - Aside from Mocking, added separate test file (test/realHttp.test.js), to run the real HTTP calls,
  to ensure the setup is working properly
 
- Changes that are not specifically test or functionality related
+ ### Changes that are not specifically test or functionality related
+
  1. Converted project to use ES modules rather than CommonJS (not that it is better, but as a habit.)
  2. Used new dependecy - `node-fetch` module, to be able to make real HTTP call, on top of tests relying on mocking.  Apparently, Node environment of Jest doesn't have `fetch` by default, thus, used this package to bring fetch API.
 
