@@ -1,13 +1,5 @@
 //todo: add unit tests
 
-/**
- * Collection of functions for the expression evaluator
- */
-
-/**
- * Refactors - strict equality check introduced
- * 
- **/
 export function equals(a, b) {
     return a === b;
 }
@@ -67,11 +59,14 @@ export async function fetchGet(url) {
  * @param {string} source - The source string to search in
  * @param {string} search - The string to search for
  * @returns {boolean} - True if the source contains the search string, false otherwise
- * @throws {Error} - If either parameter is not a string
+ * @throws {Error} - If either parameter is not a string.
  */
 export function contains(source, keyword) {
     if (typeof source !== 'string' || typeof keyword !== 'string') {
-        throw new Error('contains function requires string parameters');
+        throw new Error('contains function requires string parameters', {
+            parameter_1_type: typeof source,
+            parameter_2_type: typeof keyword
+        });
     }
     
     return source.includes(keyword);

@@ -7,7 +7,8 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.mjs",
     "test:real": "NODE_OPTIONS=--experimental-vm-modules npx jest test/realHttp.test.js --config=jest.config.mjs",
-    "test:simple": "NODE_OPTIONS=--experimental-vm-modules npx jest test/simpleFetch.test.js --config=jest.simple.config.mjs"
+    "test:simple": "NODE_OPTIONS=--experimental-vm-modules npx jest test/simpleFetch.test.js --config=jest.simple.config.mjs",
+    "test:t": "NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.mjs -t"
   },
   "jest": {
     "transform": {

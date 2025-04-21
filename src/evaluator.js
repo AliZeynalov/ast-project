@@ -8,7 +8,7 @@ export class Evaluator {
      * Evaluates an expression AST
      * @param {Object} expression - The expression to evaluate
      * @returns {*} - The result of the evaluation
-     * @throws {Error} - If the expression is invalid or contains an unknown function
+     * @throws {Error}
      */
     async evaluate(expression) {
         if (!expression || !expression.type) {
@@ -20,6 +20,9 @@ export class Evaluator {
         } else if (expression.type === "function") {
             if (!expression.name) {
                 throw new Error("Invalid function expression: missing name");
+            }
+            if (expression.parameters.length === 0) {
+                throw new Error("Function requires at least one parameter");
             }
 
             if (!Array.isArray(expression.parameters)) {

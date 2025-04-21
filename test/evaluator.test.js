@@ -103,7 +103,15 @@ describe("Evaluator", () => {
         await expect(evaluator.evaluate({ 
             type: "function", 
             name: "toString", 
-            parameters: [] 
+            parameters: [{ type: "literal", value: 1 }] 
         })).rejects.toThrow("Unknown function");
+    });
+
+    it("empty parameters", async () => {
+        await expect(evaluator.evaluate({ 
+            type: "function", 
+            name: "add", 
+            parameters: [] 
+        })).rejects.toThrow("Function requires at least one parameter");
     });
 });

@@ -27,5 +27,5 @@ describe('Simple fetch test without mocks', () => {
     
     const text = await response.text();
     expect(text).toContain('Example Domain');
-  }, 1000); // 1 second - but we might increase
+  }, 10000); // Increase timeout for network calls
 }); 
