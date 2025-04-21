@@ -74,10 +74,10 @@ describe('Functions', () => {
     });
 
     it('throws an error for non-string values', () => {
-      expect(() => contains(123, 'test')).toThrow('contains function requires string parameters');
-      expect(() => contains('test', 123)).toThrow('contains function requires string parameters');
-      expect(() => contains(null, 'test')).toThrow('contains function requires string parameters');
-      expect(() => contains('test', null)).toThrow('contains function requires string parameters');
+      expect(() => contains(123, 'test')).toThrow('Contains function requires string parameters');
+      expect(() => contains('test', 123)).toThrow('Contains function requires string parameters');
+      expect(() => contains(null, 'test')).toThrow('Contains function requires string parameters');
+      expect(() => contains('test', null)).toThrow('Contains function requires string parameters');
     });
   });
 }); 

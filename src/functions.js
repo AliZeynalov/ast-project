@@ -63,7 +63,7 @@ export async function fetchGet(url) {
  */
 export function contains(source, keyword) {
     if (typeof source !== 'string' || typeof keyword !== 'string') {
-        throw new Error('contains function requires string parameters', {
+        throw new Error('Contains function requires string parameters', {
             parameter_1_type: typeof source,
             parameter_2_type: typeof keyword
         });

@@ -67,7 +67,7 @@ describe('Real HTTP calls tests', () => {
     console.log("result", result);
     // example.com should contain "Example Domain"
     expect(result).toBe(true);
-  }, 15000); // Increase timeout to allow for network latency
+  }, 15000); // In case of need, increase timeout
   
   conditionalTest('should handle errors with real HTTP calls', async () => {
     const expression = {
