@@ -3,6 +3,5 @@ export default {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },
-  // Mock fetch globally
   setupFiles: ['./jest.setup.js'],
 }; 

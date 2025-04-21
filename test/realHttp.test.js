@@ -2,7 +2,7 @@ import { Evaluator } from '../src/evaluator.js';
 import nodeFetch from 'node-fetch';
 
 // This test file makes REAL HTTP calls - only run when needed
-// To run these tests specifically: npm test -- test/realHttp.test.js
+// To run these tests specifically: npm run test:real
 
 describe('Real HTTP calls tests', () => {
   let evaluator;
@@ -28,10 +28,8 @@ describe('Real HTTP calls tests', () => {
     evaluator = new Evaluator();
   });
   
-  // Use test.skip conditionally to skip these tests when needed
   const conditionalTest = SKIP_REAL_HTTP_TESTS ? test.skip : test;
   
-  // Direct fetch test to verify fetch is working
   conditionalTest('direct fetch should work with example.com', async () => {
     const response = await fetch('https://example.com');
     expect(response.ok).toBe(true);
@@ -62,7 +60,6 @@ describe('Real HTTP calls tests', () => {
       ]
     };
     
-    // This will make a real HTTP call to example.com
     const result = await evaluator.evaluate(expression);
     console.log("result", result);
     // example.com should contain "Example Domain"
@@ -81,7 +78,6 @@ describe('Real HTTP calls tests', () => {
       ]
     };
     
-    // This should fail with a network error
     await expect(evaluator.evaluate(expression)).rejects.toThrow();
   }, 15000); // Increase timeout
 }); 
