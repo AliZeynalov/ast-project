@@ -1,4 +1,3 @@
-// A simple test file that makes a real HTTP call without any mocking setup
 import nodeFetch from 'node-fetch';
 
 // This test assumes that Jest's setupFiles is NOT used or doesn't include jest.setup.js
@@ -27,5 +26,5 @@ describe('Simple fetch test without mocks', () => {
     
     const text = await response.text();
     expect(text).toContain('Example Domain');
-  }, 10000); // Increase timeout for network calls
+  }, 10000);
 }); 
