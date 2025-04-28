@@ -1,4 +1,4 @@
-import { add, equals, not, contains } from '../src/functions.js';
+import { add, equals, not, contains, multiply } from '../src/functions.ts';
 import { jest } from '@jest/globals';
 
 // Mock fetch for testing
@@ -78,6 +78,22 @@ describe('Functions', () => {
       expect(() => contains('test', 123)).toThrow('Contains function requires string parameters');
       expect(() => contains(null, 'test')).toThrow('Contains function requires string parameters');
       expect(() => contains('test', null)).toThrow('Contains function requires string parameters');
+    });
+  });
+
+  describe('multiply', () => {
+    it('multiplies two numbers correctly', () => {
+      expect(multiply(2, 3)).toBe(6);
+      expect(multiply(0, 5)).toBe(0);
+      expect(multiply(-2, 3)).toBe(-6);
+      expect(multiply(0.5, 2)).toBe(1);
+    });
+
+    it('throws an error for non-number values', () => {
+      expect(() => multiply('2', 3)).toThrow('multiply function requires number parameters');
+      expect(() => multiply(2, '3')).toThrow('multiply function requires number parameters');
+      expect(() => multiply(null, 3)).toThrow('multiply function requires number parameters');
+      expect(() => multiply(2, null)).toThrow('multiply function requires number parameters');
     });
   });
 }); 

@@ -1,49 +1,16 @@
 import { add, equals, not, fetchGet, contains, multiply } from "./functions.js";
-
-/**
- * Types for expression values in the AST
- */
-export type LiteralValue = string | number | boolean | null | Date | LiteralValue[];
-
-/**
- * Base interface for all expressions
- */
-export interface Expression {
-    type: string;
-}
-
-/**
- * Interface for literal expressions
- */
-export interface LiteralExpression extends Expression {
-    type: "literal";
-    value: LiteralValue;
-}
-
-/**
- * Interface for function expressions
- */
-export interface FunctionExpression extends Expression {
-    type: "function";
-    name: string;
-    parameters: Expression[];
-}
-
 /**
  * Type guard to check if an expression is a literal expression
  */
-function isLiteralExpression(expression: Expression): expression is LiteralExpression {
+function isLiteralExpression(expression) {
     return expression.type === "literal";
 }
-
 /**
  * Type guard to check if an expression is a function expression
  */
-
-function isFunctionExpression(expression: Expression): expression is FunctionExpression {
+function isFunctionExpression(expression) {
     return expression.type === "function";
 }
-
 /**
  * Evaluator class that evaluates expression ASTs
  */
@@ -54,14 +21,14 @@ export class Evaluator {
      * @returns The result of the evaluation
      * @throws Error if the expression is invalid
      */
-    async evaluate(expression: Expression): Promise<any> {
+    async evaluate(expression) {
         if (!expression || !expression.type) {
             throw new Error("Invalid expression: missing type");
         }
-
         if (isLiteralExpression(expression)) {
             return expression.value;
-        } else if (isFunctionExpression(expression)) {
+        }
+        else if (isFunctionExpression(expression)) {
             if (!expression.name) {
                 throw new Error("Invalid function expression: missing name");
             }
@@ -71,7 +38,6 @@ export class Evaluator {
             if (expression.parameters.length === 0) {
                 throw new Error("Function requires at least one parameter");
             }
-
             switch (expression.name) {
                 case "add": {
                     const param1 = await this.evaluate(expression.parameters[0]);
@@ -104,8 +70,10 @@ export class Evaluator {
                 default:
                     throw new Error(`Unknown function: ${expression.name}`);
             }
-        } else {
+        }
+        else {
             throw new Error(`Unknown expression type: ${expression.type}`);
         }
     }
-} 
+}
+//# sourceMappingURL=evaluator.js.map
