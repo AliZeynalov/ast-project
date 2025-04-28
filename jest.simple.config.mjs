@@ -2,7 +2,8 @@
 export default {
   testEnvironment: 'node',
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.(ts|js)x?$': 'babel-jest',
   },
   setupFiles: [], // No setup files means no mocking
+  extensionsToTreatAsEsm: ['.ts'],
 }; 
