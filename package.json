@@ -2,9 +2,12 @@
   "name": "mendix-expression-evaluator",
   "version": "1.0.0",
   "description": "This package executes ASTs generated from mendix expressions",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.mjs",
     "test:real": "NODE_OPTIONS=--experimental-vm-modules npx jest test/realHttp.test.js --config=jest.config.mjs",
     "test:simple": "NODE_OPTIONS=--experimental-vm-modules npx jest test/simpleFetch.test.js --config=jest.simple.config.mjs",
@@ -12,7 +15,12 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.jsx?$": ["babel-jest", {"configFile": "./babel.config.mjs"}]
+      "^.+\\.jsx?$": [
+        "babel-jest",
+        {
+          "configFile": "./babel.config.mjs"
+        }
+      ]
     }
   },
   "author": "Mendix",
@@ -20,9 +28,14 @@
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
+    "@babel/preset-typescript": "^7.27.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^20.11.0",
+    "@types/node-fetch": "^2.6.11",
     "babel-core": "^6.26.3",
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "typescript": "^5.3.3"
   }
 }

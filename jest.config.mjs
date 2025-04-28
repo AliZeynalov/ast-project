@@ -1,7 +1,8 @@
 export default {
   testEnvironment: 'node',
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.(ts|js)x?$': 'babel-jest',
   },
   setupFiles: ['./jest.setup.js'],
+  extensionsToTreatAsEsm: ['.ts'],
 }; 
